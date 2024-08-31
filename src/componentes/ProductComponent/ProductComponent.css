@@ -1,0 +1,11 @@
+.contenedorProds {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+  justify-content: center; 
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+    
+  }
+    
