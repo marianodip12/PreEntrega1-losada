@@ -1,11 +1,10 @@
 import { useCart } from './CartContext.jsx'; 
 import { Link } from 'react-router-dom'; 
-import './CartWidget.css'; // Importa el archivo CSS
-
+import './CartWidget.css'; 
 export default function CartWidget() {
   const { cartItems, removeFromCart } = useCart(); 
 
-  const total = cartItems.reduce((acc, item) => acc + Number(item.price), 0); 
+  const total = cartItems.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0); 
 
   return (
     <>
@@ -19,6 +18,7 @@ export default function CartWidget() {
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Categoría</th>
+                <th>Cantidad</th>
                 <th>Precio</th>
                 <th></th> 
               </tr>
@@ -32,7 +32,8 @@ export default function CartWidget() {
                   <td>{item.title}</td> 
                   <td>{item.description}</td> 
                   <td>{item.category}</td> 
-                  <td>{"$" + item.price}</td> 
+                  <td>{item.quantity}</td> 
+                  <td>{"$" + (item.price * item.quantity).toFixed(2)}</td>
                   <td>
                     <button onClick={() => removeFromCart(item.id)}>
                       <img 
@@ -46,8 +47,8 @@ export default function CartWidget() {
               ))}
 
               <tr>
-                <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total:</strong></td>
-                <td><strong>{"$" + total}</strong></td>
+                <td colSpan="5" style={{ textAlign: 'right' }}><strong>Total:</strong></td>
+                <td><strong>{"$" + total.toFixed(2)}</strong></td>
                 <td></td> 
               </tr>
             </tbody>
