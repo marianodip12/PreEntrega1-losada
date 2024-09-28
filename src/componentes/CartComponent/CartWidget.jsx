@@ -1,5 +1,6 @@
 import { useCart } from './CartContext.jsx'; 
 import { Link } from 'react-router-dom'; 
+import './CartWidget.css'; // Importa el archivo CSS
 
 export default function CartWidget() {
   const { cartItems, removeFromCart } = useCart(); 
@@ -11,7 +12,7 @@ export default function CartWidget() {
       <h2>Carrito de Compras</h2>
       {cartItems.length > 0 ? (
         <>
-          <table border="1" cellPadding="10" cellSpacing="0">
+          <table className="table">
             <thead>
               <tr>
                 <th>Imagen</th>
@@ -43,6 +44,7 @@ export default function CartWidget() {
                   </td>
                 </tr>
               ))}
+
               <tr>
                 <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total:</strong></td>
                 <td><strong>{"$" + total}</strong></td>
@@ -51,15 +53,14 @@ export default function CartWidget() {
             </tbody>
           </table>
 
-          
-          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
+          <div className="flex-container">
             <Link to="/">
-              <button style={{ padding: '10px 20px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>
+              <button className="button button-blue">
                 Seguir comprando
               </button>
             </Link>
             <Link to="/HomeWidget">
-              <button style={{ padding: '10px 20px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}>
+              <button className="button button-green">
                 Comprar
               </button>
             </Link>
@@ -71,4 +72,3 @@ export default function CartWidget() {
     </>
   );
 }
-
